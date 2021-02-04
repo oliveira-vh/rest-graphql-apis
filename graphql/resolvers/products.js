@@ -3,7 +3,6 @@ const Product = require('../../models/product')(db)
 const { ApolloError } = require('apollo-server-express')
 
 const getAllProducts = async (context, { filter }) => {
-
     let products = null
     if(filter && filter.categoryId){
         products = await Product.findAllByCategory(filter.categoryId)
@@ -58,10 +57,16 @@ const updateProduct = async(context, { id, input }) => {
     }
     return oldProduct
 }
+
+const deleteImageOnProduct = async (context, { productId, id }) => {
+    await Product.removeImage(productId, id)
+    return true
+}
 module.exports = {
     getAllProducts, 
     createProduct,
     deleteProduct,
     updateProduct,
-    createImageOnProduct
+    createImageOnProduct,
+    deleteImageOnProduct
 }

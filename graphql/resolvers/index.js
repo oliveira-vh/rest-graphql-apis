@@ -1,4 +1,4 @@
-const { getAllProducts, createProduct, deleteProduct, updateProduct, createImageOnProduct } = require("./products");
+const { getAllProducts, createProduct, deleteProduct, updateProduct, createImageOnProduct, deleteImageOnProduct } = require("./products");
 
 const resolvers = {
     Query: {
@@ -8,7 +8,8 @@ const resolvers = {
         createProduct,
         deleteProduct,
         updateProduct,
-        createImageOnProduct
+        createImageOnProduct,
+        deleteImageOnProduct
     }
 }
 module.exports = resolvers;

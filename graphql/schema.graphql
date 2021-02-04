@@ -17,6 +17,7 @@ type Mutation{
     updateProduct(id:String!, input: ProductUpdateInput): Product
     deleteProduct(id: String!): Boolean
     createImageOnProduct(productId: String!, input: ImageInput): Image
+    deleteImageOnProduct(productId: String!, id: String!): Boolean
 }
 input ProductFilter {
     categoryId: String
