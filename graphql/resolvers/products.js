@@ -1,9 +1,8 @@
 const db = require('../../db')
 const Product = require('../../models/product')(db)
-const { ApolloError } = require('apollo-server-express')
 
-const getAllProducts = async (context, { filter }) => {
-    let products = null
+const getAllProducts = async (parent, { filter }, context) => {
+  let products = null
     if(filter && filter.categoryId){
         products = await Product.findAllByCategory(filter.categoryId)
     } else {

@@ -1,4 +1,5 @@
 const db = require('../db')
+const jwt = require('jsonwebtoken')
 const Product = require('../models/product')(db)
 
 const remove = async (req, res) => {
@@ -83,16 +84,17 @@ const getById = async(req, res) => {
 }
 
 
-const getAll = async (req, res) => {
-    let products = null
-    if(req.query.categoryId){
-        products = await Product.findAllByCategory(req.query.categoryId)
-    } else {
-        products = await Product.findAll();
-    }
-    res.send({
-        products
-    })
+const getAll = async (req, res) => {  
+  console.log(res.locals.user)
+  let products = null
+  if(req.query.categoryId){
+      products = await Product.findAllByCategory(req.query.categoryId)
+  } else {
+      products = await Product.findAll();
+  }
+  res.send({
+      products
+  })
 }
 
 module.exports = {
